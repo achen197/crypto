@@ -1,24 +1,24 @@
-<div class="container-full" *ngIf="coin">
+<div class="container-full">
   <button class="btn" (click)="goBack()">Back to Dashboard</button>
   <div class="row">
     <div class="col-5">
       <div class="coin-img">
-        <img class="pb-4" src="assets/img/{{coin.symbol}}.png" alt="">
+        <img class="pb-4" src="assets/img/{{coin.BTC.FROMSYMBOL}}.png" alt="">
       </div>
       <div class="coin-details">
         <div class="coin">
-          <h2>{{coin.name}} <span>({{coin.symbol}})</span></h2>
+          <h2>{{coin.BTC.FROMSYMBOL}}</h2>
           <div class="rank">
-            <span class="rank-pill">Rank {{coin.rank}}</span>
+            <span class="rank-pill">Rank {{coin.BTC.FLAGS}}</span>
           </div>
         </div>
       </div>
       <div class="coin">
         <h4>Current Price:
-          <span class="price">${{coin.price}} </span>
-          <span [ngClass]="{'positive': coin.change > 0, 'negative': coin.change < 0}">({{coin.change}}%)
-            <fa-icon *ngIf="coin.change > 0" icon="caret-up" class="delete-btn"></fa-icon>
-            <fa-icon *ngIf="coin.change < 0" icon="caret-down" class="delete-btn"></fa-icon>
+          <span class="price">{{coin.BTC.PRICE}} </span>
+          <span [ngClass]="{'positive': coin.BTC.CHANGEPCTDAY > 0, 'negative': coin.BTC.CHANGEPCTDAY < 0}">({{coin.BTC.CHANGEPCTDAY}}%)
+            <fa-icon *ngIf="coin.BTC.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="coin.BTC.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
           </span>
         </h4>
       </div>
@@ -34,7 +34,7 @@
     </div>
 
   </div>
-  <!-- <div class="row">
+  <div class="row">
     <div class="col-md-12">
       <table class="table table-responsive table-condensed">
         <tr>
@@ -45,5 +45,5 @@
         </tr>
       </table>
     </div>
-  </div> -->
+  </div>
 </div>

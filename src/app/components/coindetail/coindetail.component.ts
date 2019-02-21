@@ -11,16 +11,31 @@ import { CoinService } from 'src/app/service/coin.service';
 })
 export class CoindetailComponent implements OnInit {
 
-  coin: Coin;
+  coin: object;
+  coinType: string;
 
   constructor(
     private route: ActivatedRoute,
     private coinService: CoinService,
     private location: Location
-  ) { }
+  ) { 
+    route.params.subscribe( params => {
+        this.coinType = params['id'];
+        // debugger;
+        this.coinService.getCoinData().subscribe(coinData => {
+          // debugger;
+          this.coin = coinData.RAW[this.coinType];
+        });
+        
 
-  ngOnInit(): void {
-    this.coin = this.coinService.getCoinData();
+    });
+  }
+
+  ngOnInit() {
+
+    // let coin = this.coin;
+    // this.coin = this.coinService.getCoinData()
+    // return console.log(this.coin);
   }
 
   goBack(): void {

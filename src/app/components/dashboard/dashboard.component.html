@@ -4,14 +4,14 @@
     <h3>Welcome back, {{ username }}</h3>
   </div>
   <div class="row">
-    <div class="card col-2" *ngFor="let c of coin">
-      <a routerLink="/detail/{{c.symbol}}" (click)="sendCoinData(c)">
-        <img class="pb-4" src="assets/img/{{c.symbol}}.png" alt="" width="50px">
-        <h4 class="pb-2">{{c.name}} ({{c.symbol}})</h4>
-        <p>${{c.price}} 
-          <span [ngClass]="{'positive': c.change > 0, 'negative': c.change < 0}"> {{c.change}}% 
-            <fa-icon *ngIf="c.change > 0" icon="caret-up" class="delete-btn"></fa-icon>
-            <fa-icon *ngIf="c.change < 0" icon="caret-down" class="delete-btn"></fa-icon>
+    <div class="card col-2" *ngFor="let c of coins.DISPLAY | keyvalue">
+      <a routerLink="/detail/{{c.key}}">
+        <img class="pb-4" src="assets/img/{{c.key}}.png" alt="" width="50px">
+        <h4 class="pb-2">{{c.key}}</h4>
+        <p>{{c.value.USD.PRICE}} 
+          <span [ngClass]="{'positive': c.value.USD.CHANGEPCTDAY > 0, 'negative': c.value.USD.CHANGEPCTDAY < 0}"> {{c.value.USD.CHANGEPCTDAY}}% 
+            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
           </span>
         </p>
       </a>

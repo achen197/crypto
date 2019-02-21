@@ -16,18 +16,23 @@ library.add(faCaretUp, faCaretDown);
 export class DashboardComponent implements OnInit {
 
   username: User;
-  coin = COINS;
+  // coin = COINS;
+  coins: object;
+
   constructor(
     private coinService: CoinService,
     private loginService: LoginService
     ) { }
 
-  sendCoinData(c) {
-    this.coinService.setCoinData(c);
-  }
+  // sendCoinData(c) {
+  //   this.coinService.setCoinData(c);
+  // }
 
   ngOnInit() {
     this.username = this.loginService.getUsername();
+    this.coinService.getCoinData()
+    .subscribe(res => {
+      this.coins = res;
+    });
   }
-
 }
