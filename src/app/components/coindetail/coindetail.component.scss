@@ -1,0 +1,98 @@
+.container-full {
+    margin: 0 7rem;
+    
+    .btn {
+        letter-spacing: 1px;
+        color: white;
+        text-transform: uppercase;
+        font-family: 'Rubik', sans-serif;
+        border: 1px solid white;
+        font-size: 0.8rem;
+        margin-top: 1rem;
+    }
+}
+
+.rank {
+    margin-left: 1rem;
+    margin-bottom: 0.5rem;
+
+    .rank-pill {
+        padding: 0.25rem 0.75rem;
+        background: #32c575;
+        border-radius: 15px;
+        font-size: 0.8rem;
+        font-weight: 600;
+    }
+}
+
+.coin {
+    display: inline-flex;
+    align-items: center;
+    
+    h2, h4 {
+        font-family: 'Rubik', sans-serif;
+    }
+
+    h4 {
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+
+    .price {
+        font-weight: 400;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .positive {
+        color: green;
+    }
+    
+    .negative {
+        color: red;
+    }
+}
+
+.coin-details {
+    display: flex;
+    align-items: center;
+}
+
+.coin-img {
+    margin-top: 3rem;
+    
+    img {
+        width: 140px;
+    }
+}
+
+.about {
+    font-size: 0.9rem;
+    letter-spacing: 0.5px;
+    line-height: 27px;
+    text-align: justify;
+}
+
+.stock-chart {
+    position: relative;
+    top: 6rem;
+}
+
+.table {
+    border-radius: 15px;
+    -webkit-box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    -moz-box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    margin-top: 2rem;
+    
+    td, th {
+        background: none;
+        border-top: 1px solid rgba(5,0,79,0.28);
+    }
+
+    th {
+        font-family: 'Rubik', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+}

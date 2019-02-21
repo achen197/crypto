@@ -1,0 +1,44 @@
+.positive {
+    color: green;
+}
+
+.negative {
+    color: red;
+}
+
+a {
+    color: white;
+
+    &:hover {
+        text-decoration: none;
+    }
+}
+
+.row {
+    justify-content: center;
+}
+
+.card {
+    border: none;
+    -webkit-box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    -moz-box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
+    margin: 1rem;
+    padding: 2.5rem;
+    text-align: center;
+    background: none;
+    color: white;
+    font-family: 'Rubik', sans-serif;
+    transition: all 0.1s ease-in-out;
+    
+    &:hover {
+        transform: translate(0, -5px);
+        -webkit-transform: translate(0, -5px);
+        transition: all 0.3s ease-in-out;
+    }
+}
+
+.card img {
+    display: block;
+    margin: 0 auto;
+}

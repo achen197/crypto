@@ -1,0 +1,77 @@
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+    position: relative;
+    top: 8rem;
+
+    img {
+        display: block;
+        margin: 0 auto;
+    }
+  }
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
+  .form-signin .form-control {
+    position: relative;
+    box-sizing: border-box;
+    height: auto;
+    padding: 10px;
+    font-size: 16px;
+  }
+  .form-signin .form-control:focus {
+    z-index: 2;
+    outline: none;
+  }
+
+  .form-signin input[type="text"],
+  .form-signin input[type="password"] {
+    background: none;
+    border: none;
+    border-radius: 0;
+    border-bottom: 1px solid white;
+    margin-bottom: 1rem;
+  }
+
+  .form-signin input,
+  .form-signin ::placeholder,
+  a {
+    color: white;
+    // text-transform: uppercase;
+    font-size: 0.675rem;
+    letter-spacing: 2px;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  .form-signin ::placeholder {
+      color: #c5c5c5;
+      text-transform: uppercase;
+  }
+
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+  }
+
+  .btn-lg {
+    border-radius: 35px;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    font-size: 1rem;
+    font-family: 'Rubik', sans-serif;
+  }
+
+  .btn-primary {
+    background: #41295a;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #2F0743, #41295a);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #2F0743, #41295a); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+    border: none;
+  }
+
+:focus {
+    outline: 0;
+}

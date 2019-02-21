@@ -1,0 +1,49 @@
+<div class="container-full" *ngIf="coin">
+  <button class="btn" (click)="goBack()">Back to Dashboard</button>
+  <div class="row">
+    <div class="col-5">
+      <div class="coin-img">
+        <img class="pb-4" src="assets/img/{{coin.symbol}}.png" alt="">
+      </div>
+      <div class="coin-details">
+        <div class="coin">
+          <h2>{{coin.name}} <span>({{coin.symbol}})</span></h2>
+          <div class="rank">
+            <span class="rank-pill">Rank {{coin.rank}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="coin">
+        <h4>Current Price:
+          <span class="price">${{coin.price}} </span>
+          <span [ngClass]="{'positive': coin.change > 0, 'negative': coin.change < 0}">({{coin.change}}%)
+            <fa-icon *ngIf="coin.change > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="coin.change < 0" icon="caret-down" class="delete-btn"></fa-icon>
+          </span>
+        </h4>
+      </div>
+      <p class="about">{{coin.about}}</p>
+    </div>
+
+    <div class="col-md-7">
+      <div class="stock-chart">
+        <canvas baseChart width="400" height="250" [datasets]="lineChartData" [labels]="lineChartLabels"
+          [options]="lineChartOptions" [colors]="lineChartColors" [legend]="lineChartLegend" [chartType]="lineChartType"
+          (chartHover)="chartHovered($event)" (chartClick)="chartClicked($event)"></canvas>
+      </div>
+    </div>
+
+  </div>
+  <!-- <div class="row">
+    <div class="col-md-12">
+      <table class="table table-responsive table-condensed">
+        <tr>
+          <th *ngFor="let label of lineChartLabels">{{label}}</th>
+        </tr>
+        <tr *ngFor="let d of lineChartData">
+          <td *ngFor="let label of lineChartLabels; let j=index">{{d && d.data[j]}}</td>
+        </tr>
+      </table>
+    </div>
+  </div> -->
+</div>

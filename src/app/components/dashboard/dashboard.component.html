@@ -1,0 +1,20 @@
+<!-- <app-search></app-search> -->
+<div class="container-full mt-2">
+  <div class="row mt-3 mb-3">
+    <h3>Welcome back, {{ username }}</h3>
+  </div>
+  <div class="row">
+    <div class="card col-2" *ngFor="let c of coin">
+      <a routerLink="/detail/{{c.symbol}}" (click)="sendCoinData(c)">
+        <img class="pb-4" src="assets/img/{{c.symbol}}.png" alt="" width="50px">
+        <h4 class="pb-2">{{c.name}} ({{c.symbol}})</h4>
+        <p>${{c.price}} 
+          <span [ngClass]="{'positive': c.change > 0, 'negative': c.change < 0}"> {{c.change}}% 
+            <fa-icon *ngIf="c.change > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="c.change < 0" icon="caret-down" class="delete-btn"></fa-icon>
+          </span>
+        </p>
+      </a>
+      </div>
+  </div>
+</div>

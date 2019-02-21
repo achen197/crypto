@@ -1,0 +1,12 @@
+<form class="form-signin">
+    <img class="mb-4" src="https://image.flaticon.com/icons/svg/138/138358.svg" alt="" width="75" height="75">
+    <h2 class="text-center">Crypto</h2>
+    <label for="inputEmail" class="sr-only">Username</label>
+    <input type="text" id="inputEmail" class="form-control" name="username" placeholder="Username" [(ngModel)]="username" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+    <a href="#">Forgot password?</a>
+    <a routerLink="/dashboard">
+    <button class="btn btn-lg btn-primary btn-block" (click)="sendUser(username)">Sign In</button>
+    </a>
+  </form>

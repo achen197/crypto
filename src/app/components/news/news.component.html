@@ -1,0 +1,19 @@
+<div class="container-full">
+  <div class="row">
+      <div class="col-4" *ngFor="let n of news">
+          <div class="news-card">
+              <div class="zoom-effect-container">
+                  <div class="image-card">
+                      <img src="{{n.imageurl}}">
+                  </div>
+                </div>
+              <span class="line"></span>
+              <h4>{{n.title}}</h4>
+              <span class="line"></span>
+              <p>{{n.body}}. <a href="{{n.url}}"><strong>Read the full article  </strong><fa-icon icon="arrow-right"></fa-icon></a></p>
+              <span>{{n.categories}}</span>
+          </div>
+          </div>
+  </div>
+</div>
+
