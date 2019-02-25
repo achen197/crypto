@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CoinService } from 'src/app/service/coin.service';
+import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-coindetail',
@@ -12,17 +13,23 @@ export class CoindetailComponent implements OnInit {
 
   coin: object;
   coinDetail: object;
-  coinHistory: object;
+  coinHistory: object[];
   coinType: string;
-  // coinData$: object;
-  // coinDetail$: object;
-  // coinHistory$: object;
 
   constructor(
     private route: ActivatedRoute,
     private coinService: CoinService,
     private location: Location
   ) { }
+
+  customizeTooltip(arg) {
+        return {
+            text: "Open: $" + arg.openValue + "<br/>" +
+                "Close: $" + arg.closeValue + "<br/>" +
+                "High: $" + arg.highValue + "<br/>" +
+                "Low: $" + arg.lowValue + "<br/>"
+        };
+    }
 
   ngOnInit() {
 
@@ -43,14 +50,19 @@ export class CoindetailComponent implements OnInit {
   this.route.params.subscribe( params => {
     this.coinType = params['id'];
       this.coinService.getCoinHistory(this.coinType).subscribe(coinHistory => {
-      this.coinHistory = coinHistory.Data;
-    });
-});
+      this.coinHistory = Object.values(coinHistory.Data);
+      console.log(this.coinHistory);
+      // debugger;
+      // let time = coinHistory.Date.map(time => this.date = new Date(time))
+      // let time = this.coinHistory;
+      // let date = new Date(time);
 
-// this.coinData$ = this.coinService.getCoinData();
-// this.coinDetail$ = this.coinService.getCoinGeneralDetail();
-// this.coinHistory$ = this.coinService.getCoinHistory(this.coinType);
-  }
+      // console.log(date);
+      // this.coinHistory.map(time => this.date = new Date(time));
+      // console.log(date);
+    });
+  }); 
+}
 
   goBack(): void {
     this.location.back();
