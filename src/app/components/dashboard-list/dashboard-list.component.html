@@ -1,0 +1,37 @@
+  <div class="container">
+    <div class="row">
+        <div class="toggle-view">
+            <button><a routerLink="/dashboard">Card</a></button>
+          </div>
+    </div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Name</th>
+        <th scope="col">Market Cap</th>
+        <th scope="col">Price</th>
+        <th scope="col">Volume (24h)</th>
+        <th scope="col">Circulating Supply</th>
+        <th scope="col">Change (24h)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of coins.DISPLAY | keyvalue">
+        <td>1</td>
+        <td><img src="assets/img/{{c.key}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.key}}</td>
+        <td>{{c.value.USD.MKTCAP}}</td>
+        <td>{{c.value.USD.PRICE}}</td>
+        <td>{{c.value.USD.TOTALVOLUME24HTO}}</td>
+        <td>{{c.value.USD.SUPPLY}}</td>
+        <td [ngClass]="{'positive': c.value.USD.CHANGEPCTDAY > 0, 'negative': c.value.USD.CHANGEPCTDAY < 0}">{{c.value.USD.CHANGEPCT24HOUR}}% 
+            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+<div *ngFor="let d of coinFullDetail.Data | keyvalue">
+  <p>{{d.key}} |<span>{{d.value.FullName}}</span></p>
+</div>

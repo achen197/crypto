@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { COINS } from 'src/app/coin-details';
 import { CoinService } from 'src/app/service/coin.service';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -16,18 +15,14 @@ library.add(faCaretUp, faCaretDown);
 export class DashboardComponent implements OnInit {
 
   username: User;
-  // coin = COINS;
   coins: object;
+  coinGeneralDetail: object;
 
   constructor(
     private coinService: CoinService,
     private loginService: LoginService
     ) { }
-
-  // sendCoinData(c) {
-  //   this.coinService.setCoinData(c);
-  // }
-
+    
   ngOnInit() {
     this.username = this.loginService.getUsername();
     this.coinService.getCoinData()
