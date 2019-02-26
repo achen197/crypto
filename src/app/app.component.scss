@@ -15,4 +15,8 @@
     letter-spacing: 2px;
     font-family: 'Roboto', sans-serif;
     font-weight: 400;
+
+    &:active {
+        text-decoration: underline;
+    }
 }

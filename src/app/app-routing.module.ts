@@ -10,7 +10,7 @@ import { DashboardListComponent } from './components/dashboard-list/dashboard-li
 const routes: Routes = [
   { path: '', redirectTo:'/dashboard', pathMatch: 'full'},
   { path: 'dashboard', component: DashboardComponent },
-  // { path: 'dashboard-list', component: DashboardListComponent },
+  { path: 'dashboard-list', component: DashboardListComponent },
   { path: 'detail/:id', component: CoindetailComponent},
   { path: 'news', component: NewsComponent },
   { path: 'login', component: LoginComponent }

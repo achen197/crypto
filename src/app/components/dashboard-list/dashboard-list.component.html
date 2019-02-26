@@ -1,9 +1,4 @@
   <div class="container">
-    <div class="row">
-        <div class="toggle-view">
-            <button><a routerLink="/dashboard">Card</a></button>
-          </div>
-    </div>
   <table class="table">
     <thead>
       <tr>
@@ -31,7 +26,5 @@
       </tr>
     </tbody>
   </table>
+  <mat-checkbox>Check me!</mat-checkbox>
   </div>
-<div *ngFor="let d of coinFullDetail.Data | keyvalue">
-  <p>{{d.key}} |<span>{{d.value.FullName}}</span></p>
-</div>

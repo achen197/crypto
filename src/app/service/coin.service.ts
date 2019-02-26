@@ -17,7 +17,7 @@ export class CoinService {
 
   getCoinData() {
     if (this.result) return of(this.result);
-    this.coinData = this.http.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,EOS,TRX,XML,ETH,DASH,LTC,DOGE,BCC,BCH,BLOCK,XRP,OMG,PAY,IOT,KMD&tsyms=BTC,USD,AUD")
+    this.coinData = this.http.get("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,EOS,TRX,XML,ETH,DASH,LTC,DOGE,BCC,BCH,BLOCK,XRP,OMG,PAY,IOT,KMD,ZEC,NEO,BNB,BAT,QTUM,POT,NXT,BNT,QASH,USDT,EDG,POWER,AE,BTM,MINX,ZA,MCO,BTS,WAVES,KMD,MAID,SNT,PURA,LSK,ZRX,HSR,DGB,BTCD&tsyms=BTC,USD,AUD")
     .pipe(map(result => this.result = result));
     return this.coinData;
   }

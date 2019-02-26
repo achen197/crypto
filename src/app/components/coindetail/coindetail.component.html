@@ -29,6 +29,11 @@
     </div>
     <div class="row">
       <div class="col-12">
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+              <mat-button-toggle value="Daily">Daily</mat-button-toggle>
+              <mat-button-toggle value="Hourly">Hourly</mat-button-toggle>
+              <mat-button-toggle value="Minutely">Minutely</mat-button-toggle>
+            </mat-button-toggle-group>
         <dx-chart id="chart" title="{{coinType}} Historical Chart" [dataSource]="coinHistory">
           <dxi-series name="{{coinType}}" openValueField="open" highValueField="high" lowValueField="low"
             closeValueField="close">
@@ -36,7 +41,6 @@
           </dxi-series>
           <dxo-common-series-settings argumentField="time" type="candlestick">
           </dxo-common-series-settings>
-          <dxo-legend itemTextPosition="left"></dxo-legend>
           <dxi-value-axis>
             <dxo-title text="US dollars"></dxo-title>
             <dxo-label>
