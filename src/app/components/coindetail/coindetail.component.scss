@@ -72,11 +72,6 @@
     text-align: justify;
 }
 
-.stock-chart {
-    position: relative;
-    top: 6rem;
-}
-
 .table {
     border-radius: 15px;
     -webkit-box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
@@ -95,4 +90,14 @@
         letter-spacing: 1px;
     }
 
+}
+
+::ng-deep #chart {
+    height: 440px;
+
+    //important as dxchart uses inline styles
+    .dxc-title text {
+        fill: white !important;
+        font-family: 'Rubik', sans-serif !important;
+    }
 }

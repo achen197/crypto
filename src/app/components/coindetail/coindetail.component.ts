@@ -13,14 +13,38 @@ export class CoindetailComponent implements OnInit {
 
   coin: object;
   coinDetail: object;
-  coinHistory: object[];
+  coinHistory: any[];
   coinType: string;
 
   constructor(
     private route: ActivatedRoute,
     private coinService: CoinService,
     private location: Location
-  ) { }
+  ) { 
+      //Getting the specific crypto based on the ID (coinType)
+      this.route.params.subscribe( params => {
+        this.coinType = params['id'];
+        this.coinService.getCoinData().subscribe(coinData => {
+          this.coin = coinData.RAW[this.coinType];
+        });
+      });
+
+      this.route.params.subscribe( params => {
+        this.coinType = params['id'];
+          this.coinService.getCoinGeneralDetail().subscribe(coinGeneralDetail => {
+          this.coinDetail = coinGeneralDetail.Data[this.coinType];
+        });
+      });
+
+    this.route.params.subscribe( params => {
+      this.coinType = params['id'];
+        this.coinService.getCoinHistory(this.coinType).subscribe(coinHistory => {
+        this.coinHistory = coinHistory.Data;
+        //Changing unix time to readable time for dxcharts 
+        this.coinHistory = this.coinHistory.map(history => ({...history, time: new Date(history.time * 1000)}));
+      });
+     }); 
+    }
 
   customizeTooltip(arg) {
         return {
@@ -29,41 +53,17 @@ export class CoindetailComponent implements OnInit {
                 "High: $" + arg.highValue + "<br/>" +
                 "Low: $" + arg.lowValue + "<br/>"
         };
+    };
+
+    tickInterval(arg) {
+      return (arg.openValue < 100) ? '10' : '100'; 
     }
 
-  ngOnInit() {
+    ngOnInit() {
 
-    this.route.params.subscribe( params => {
-      this.coinType = params['id'];
-      this.coinService.getCoinData().subscribe(coinData => {
-        this.coin = coinData.RAW[this.coinType];
-      });
-  });
+    }
 
-    this.route.params.subscribe( params => {
-      this.coinType = params['id'];
-        this.coinService.getCoinGeneralDetail().subscribe(coinGeneralDetail => {
-        this.coinDetail = coinGeneralDetail.Data[this.coinType];
-      });
-  });
-
-  this.route.params.subscribe( params => {
-    this.coinType = params['id'];
-      this.coinService.getCoinHistory(this.coinType).subscribe(coinHistory => {
-      this.coinHistory = Object.values(coinHistory.Data);
-      console.log(this.coinHistory);
-      // debugger;
-      // let time = coinHistory.Date.map(time => this.date = new Date(time))
-      // let time = this.coinHistory;
-      // let date = new Date(time);
-
-      // console.log(date);
-      // this.coinHistory.map(time => this.date = new Date(time));
-      // console.log(date);
-    });
-  }); 
-}
-
+  //Back to dashboard button
   goBack(): void {
     this.location.back();
   }
