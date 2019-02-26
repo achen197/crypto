@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoinService } from 'src/app/service/coin.service';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { User } from 'src/app/user';
+import { User } from 'src/app/types/user';
 import { LoginService } from 'src/app/service/login.service';
 
 library.add(faCaretUp, faCaretDown);

@@ -16,10 +16,6 @@ export class NewsService {
 
   getNews() {
     return this.http.get('./assets/data/news-details.json');
-    // return this.http.get(this.url);
-    // let result = this.http.get(this.url);
-    // debugger;
-    // return result;
   }
 
   setNews() {

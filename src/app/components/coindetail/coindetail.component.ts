@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CoinService } from 'src/app/service/coin.service';
-import { map } from "rxjs/operators";
 
 @Component({
   selector: 'app-coindetail',
@@ -55,13 +54,7 @@ export class CoindetailComponent implements OnInit {
         };
     };
 
-    tickInterval(arg) {
-      return (arg.openValue < 100) ? '10' : '100'; 
-    }
-
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 
   //Back to dashboard button
   goBack(): void {

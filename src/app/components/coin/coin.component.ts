@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Coin } from 'src/app/coin';
 import { CoinService } from 'src/app/service/coin.service';
 
 @Component({
@@ -7,10 +6,7 @@ import { CoinService } from 'src/app/service/coin.service';
   templateUrl: './coin.component.html',
   styleUrls: ['./coin.component.scss']
 })
-export class CoinComponent implements OnInit {
-
-  coins: Coin[];
-  
+export class CoinComponent implements OnInit {  
   constructor(private coinService: CoinService) { }
 
   ngOnInit() {
