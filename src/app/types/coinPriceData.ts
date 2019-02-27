@@ -1,6 +1,6 @@
 export interface CoinPriceData {
-    currency: string;    
-    symbol: string;
+    currency: number;    
+    symbol: number;
     price: number;
     marketCap: number;
     change: number;

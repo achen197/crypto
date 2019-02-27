@@ -1,4 +1,4 @@
-export interface coinGeneralData {
+export interface CoinGeneralData {
     id: string;
     name: string;
     symbol: string;

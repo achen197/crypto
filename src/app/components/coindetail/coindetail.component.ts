@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { CoinService } from 'src/app/service/coin.service';
+import { CoinPriceData } from 'src/app/types/coinPriceData';
+import { CoinGeneralData } from 'src/app/types/coinGeneralData';
 
 @Component({
   selector: 'app-coindetail',
@@ -10,8 +12,8 @@ import { CoinService } from 'src/app/service/coin.service';
 })
 export class CoindetailComponent implements OnInit {
 
-  coin: object;
-  coinDetail: object;
+  coin: CoinPriceData[] = [];
+  coinDetail: CoinGeneralData[] = [];
   coinHistory: any[];
   coinType: string;
 
@@ -23,15 +25,15 @@ export class CoindetailComponent implements OnInit {
       //Getting the specific crypto based on the ID (coinType)
       this.route.params.subscribe( params => {
         this.coinType = params['id'];
-        this.coinService.getCoinData().subscribe(coinData => {
-          this.coin = coinData.RAW[this.coinType];
+        this.coinService.getCoinDataRAW().subscribe(coinData => {
+          this.coin = coinData[this.coinType];
         });
       });
 
       this.route.params.subscribe( params => {
         this.coinType = params['id'];
           this.coinService.getCoinGeneralDetail().subscribe(coinGeneralDetail => {
-          this.coinDetail = coinGeneralDetail.Data[this.coinType];
+          this.coinDetail = coinGeneralDetail[this.coinType];
         });
       });
 
@@ -54,7 +56,7 @@ export class CoindetailComponent implements OnInit {
         };
     };
 
-    ngOnInit() {}
+    ngOnInit(): void {}
 
   //Back to dashboard button
   goBack(): void {

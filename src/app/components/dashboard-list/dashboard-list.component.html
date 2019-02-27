@@ -1,3 +1,4 @@
+<ng-container *ngIf="{ first: coin, second: coinDetail} as values">
   <div class="container">
   <table class="table">
     <thead>
@@ -12,9 +13,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of coins.DISPLAY | keyvalue">
-        <td>1</td>
-        <td><img src="assets/img/{{c.key}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.key}}</td>
+      <tr *ngFor="let c of coin | keyvalue">
+        <td>{{values.second.SortOrder}}</td>
+        <td><a routerLink="/detail/{{c.key}}"><img src="assets/img/{{c.key}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.key}}</a></td>
         <td>{{c.value.USD.MKTCAP}}</td>
         <td>{{c.value.USD.PRICE}}</td>
         <td>{{c.value.USD.TOTALVOLUME24HTO}}</td>
@@ -26,5 +27,5 @@
       </tr>
     </tbody>
   </table>
-  <mat-checkbox>Check me!</mat-checkbox>
   </div>
+  </ng-container>

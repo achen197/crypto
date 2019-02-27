@@ -4,6 +4,7 @@ import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { User } from 'src/app/types/user';
 import { LoginService } from 'src/app/service/login.service';
+import { CoinPriceData } from 'src/app/types/coinPriceData';
 
 library.add(faCaretUp, faCaretDown);
 
@@ -15,7 +16,7 @@ library.add(faCaretUp, faCaretDown);
 export class DashboardComponent implements OnInit {
 
   username: User;
-  coins: object;
+  coins: CoinPriceData[] = [];
   coinGeneralDetail: object;
 
   constructor(
@@ -23,9 +24,9 @@ export class DashboardComponent implements OnInit {
     private loginService: LoginService
     ) { }
     
-  ngOnInit() {
+  ngOnInit(): void {
     this.username = this.loginService.getUsername();
-    this.coinService.getCoinData()
+    this.coinService.getCoinDataRAW()
     .subscribe(res => {
       this.coins = res;
     });
