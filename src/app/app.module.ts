@@ -6,7 +6,9 @@ import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
 import { DxChartModule } from 'devextreme-angular';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatCheckboxModule, MatButtonToggleModule } from '@angular/material';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule, MatCheckboxModule, 
+  MatButtonToggleModule, MatTableModule, MatSelectModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -34,8 +36,9 @@ import { DashboardListComponent } from './components/dashboard-list/dashboard-li
   imports: [
     BrowserModule, HttpClientModule, AppRoutingModule, 
     FontAwesomeModule, ChartsModule, FormsModule,
-    DxChartModule, BrowserAnimationsModule,
-    MatButtonModule, MatCheckboxModule, MatButtonToggleModule
+    DxChartModule, BrowserAnimationsModule, CommonModule,
+    MatButtonModule, MatCheckboxModule, MatButtonToggleModule,
+    MatTableModule, MatSelectModule
   ],
   providers: [ CoinService, NewsService ],
   bootstrap: [AppComponent]
