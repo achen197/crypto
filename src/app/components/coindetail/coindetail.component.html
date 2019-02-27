@@ -2,7 +2,7 @@
   <div class="container-full">
     <button class="btn" (click)="goBack()">Back to Dashboard</button>
     <div class="row">
-      <div class="col-8">
+      <div class="col-5">
         <div class="coin-img">
           <img class="pb-4" src="assets/img/{{coinType}}.png" alt="">
         </div>
@@ -16,15 +16,54 @@
         </div>
         <div class="coin">
           <h4>Current Price:
-            <span class="price">USD${{values.first.USD.PRICE | number}} </span>
+            <span class="price">{{values.first.USD.PRICE}} </span>
             <span
-              [ngClass]="{'positive': values.first.USD.CHANGEPCTDAY > 0, 'negative': values.first.USD.CHANGEPCTDAY < 0}">({{values.first.USD.CHANGEPCTDAY | number}}%)
+              [ngClass]="{'positive': values.first.USD.CHANGEPCTDAY > 0, 'negative': values.first.USD.CHANGEPCTDAY < 0}">({{values.first.USD.CHANGEPCTDAY}}%)
               <fa-icon *ngIf="values.first.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
               <fa-icon *ngIf="values.first.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
             </span>
           </h4>
         </div>
-        <p class="about">{{coin.about}}</p>
+      </div>
+      <div class="col-7">
+        <table>
+          <tr>
+            <th>{{values.second.Symbol}}</th>
+            <td>{{values.first.USD.PRICE}} USD</td>
+          </tr>
+          <tr>
+            <th>Market Rank</th>
+            <td>#{{values.second.SortOrder}}</td>
+          </tr>
+          <tr>
+            <th>Market Cap</th>
+            <td>{{values.first.USD.MKTCAP}} USD</td>
+          </tr>
+          <tr>
+            <th>24h Volume</th>
+            <td>{{values.first.USD.VOLUME24HOUR}} USD</td>
+          </tr>
+          <tr>
+            <th>Circulating Supply</th>
+            <td>{{values.first.USD.SUPPLY}}</td>
+          </tr>
+          <tr>
+            <th>Max Supply</th>
+            <td>{{values.second.TotalCoinSupply}}</td>
+          </tr>
+          <tr>
+            <th>Yesterday's Open</th>
+            <td>{{values.first.USD.OPEN24HOUR}}</td>
+          </tr>
+          <tr>
+            <th>Yesterday's High / Low</th>
+            <td>{{values.first.USD.HIGH24HOUR}} / {{values.first.USD.LOW24HOUR}}</td>
+          </tr>
+          <tr>
+            <th>Yesterday's Change</th>
+            <td>{{values.first.USD.CHANGE24HOUR}}</td>
+          </tr>
+        </table>
       </div>
     </div>
     <div class="row">

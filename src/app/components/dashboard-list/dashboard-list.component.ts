@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CoinService } from 'src/app/service/coin.service';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { ActivatedRoute } from '@angular/router';
-import { CoinPriceData } from 'src/app/types/coinPriceData';
-import { CoinGeneralData } from 'src/app/types/coinGeneralData';
+import { CoinCombined } from 'src/app/types/coinCombined';
 
 library.add(faCaretUp, faCaretDown);
 @Component({
@@ -13,24 +11,24 @@ library.add(faCaretUp, faCaretDown);
   styleUrls: ['./dashboard-list.component.scss']
 })
 export class DashboardListComponent implements OnInit {
-  coin: CoinPriceData[] = [];
-  coinDetail: CoinGeneralData[] = [];
+  // coin: CoinCombined[] = [];
+  // coinDetail: CoinCombined[] = [];
 
   constructor(
     private coinService: CoinService,
   ) { }
 
   ngOnInit(): void { 
-    this.coinService.getCoinDataRAW()
+    this.coinService.getCoinDataandGeneral()
     .subscribe(res => {
-      this.coin = res;
-      console.log(this.coin);
+      return res;
     });
 
-    this.coinService.getCoinGeneralDetail()
-    .subscribe(res => {
-      this.coinDetail = res;    
-    });
+    // this.coinService.getCoinGeneralDetail()
+    // .subscribe(res => {
+    //   this.coinDetail = res;    
+    //   console.log(this.coinDetail);
+    // });
    }
 
 }

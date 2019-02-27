@@ -14,7 +14,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let c of coin | keyvalue">
-        <td>{{values.second.SortOrder}}</td>
+        <td>{{values.first.SortOrder}}</td>
         <td><a routerLink="/detail/{{c.key}}"><img src="assets/img/{{c.key}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.key}}</a></td>
         <td>{{c.value.USD.MKTCAP}}</td>
         <td>{{c.value.USD.PRICE}}</td>

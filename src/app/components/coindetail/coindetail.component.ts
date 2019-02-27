@@ -40,7 +40,7 @@ export class CoindetailComponent implements OnInit {
     this.route.params.subscribe( params => {
       this.coinType = params['id'];
         this.coinService.getCoinHistory(this.coinType).subscribe(coinHistory => {
-        this.coinHistory = coinHistory.Data;
+        this.coinHistory = coinHistory;
         //Changing unix time to readable time for dxcharts 
         this.coinHistory = this.coinHistory.map(history => ({...history, time: new Date(history.time * 1000)}));
       });

@@ -1,4 +1,4 @@
-export interface coinHistory {
+export interface CoinHistoryData {
     date: Date;
     close: number;
     open: number;
