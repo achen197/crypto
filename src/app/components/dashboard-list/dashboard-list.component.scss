@@ -4,6 +4,9 @@ table {
     box-shadow: 1px 1px 50px 0px rgba(5,0,79,0.28);
     margin: 2rem 0;
     border-radius: 20px;
+    background: none;
+    color: white;
+    width: 100%;
 }
 
 .table td, .table th,
@@ -13,4 +16,13 @@ table {
 
 tr:nth-child(even) {
     background-color:rgba(255,255,255,0.1);
+}
+
+th.mat-header-cell, td.mat-cell, td.mat-footer-cell, th.mat-header-cell, a {
+    color: white;
+    font-size: 0.9rem;
+}
+
+.mat-form-field-appearance-legacy .mat-form-field-label {
+    color: white;
 }

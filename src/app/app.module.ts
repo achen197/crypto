@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule, MatCheckboxModule, 
          MatButtonToggleModule, MatTableModule, MatSelectModule,
-         MatSortModule } from '@angular/material';
+         MatSortModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -39,7 +39,7 @@ import { DashboardListComponent } from './components/dashboard-list/dashboard-li
     FontAwesomeModule, ChartsModule, FormsModule,
     DxChartModule, BrowserAnimationsModule, CommonModule,
     MatButtonModule, MatCheckboxModule, MatButtonToggleModule,
-    MatTableModule, MatSelectModule, MatSortModule
+    MatTableModule, MatSelectModule, MatSortModule, MatInputModule
   ],
   providers: [ CoinService, NewsService ],
   bootstrap: [AppComponent]

@@ -20,7 +20,7 @@ export class DashboardListComponent implements OnInit {
     private coinService: CoinService,
   ) { }
 
-  displayedColumns: string[] = ['coin.CoinGeneral.SortOrder', 
+  displayedColumns: string[] = ['coin.CoinGeneral.SortOrder', 'coin.CoinGeneral.FullName',
   'coin.CoinData.USD.PRICE', 'coin.CoinData.USD.MKTCAP', 
   'coin.CoinData.USD.TOTALVOLUME24HTO', 'coin..CoinData.USD.SUPPLY',
   'coin.CoinData.USD.CHANGEPCTDAY'];
@@ -32,12 +32,16 @@ export class DashboardListComponent implements OnInit {
     this.coinService.getCoinDataandGeneral()
     .subscribe(res => {
       this.coin = res;
-      this.dataSource = new MatTableDataSource(this.coin);
-      console.log(this.dataSource);
+      this.dataSource = this.coin;
+      // this.dataSource = new MatTableDataSource(this.coin);
+      // console.log(this.dataSource);
+      console.log(this.coin);
       return this.coin;
     });
-
-    this.dataSource.sort = this.sort;
+    // this.dataSource.sort = this.sort;
    }
 
+   applyFilter(filterValue: CoinCombined[]) {
+    this.dataSource.filter = (<CoinCombined[]>filterValue).trim().toLowerCase();
+  }
 }

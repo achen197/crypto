@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
       this.coins = res;
       // console.log(res);
       // console.log(this.coins);
-      console.log(this.coins);
       return this.coins;
     });
   }
