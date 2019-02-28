@@ -20,6 +20,6 @@ import { CoinHistoryData } from './coinHistory';
 // }
 
 export interface CoinCombined {
-    CoinHistory: CoinHistoryData;
+    CoinData: CoinPriceData;
     CoinGeneral: CoinGeneralData;
 }

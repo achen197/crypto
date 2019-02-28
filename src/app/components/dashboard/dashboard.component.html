@@ -1,35 +1,34 @@
 <!-- <app-search></app-search> -->
-<div class="container-full mt-2">
-  <div class="row mt-3 mb-3">
-    <div class="col-6">
-      <h3>Welcome back, {{ username }}</h3>
-    </div>
-    <div class="col-6">
-      <mat-form-field>
-          <mat-select [(value)]="selected" placeholder="Currency">
-            <mat-option value="USD">USD</mat-option>
-            <mat-option value="AUD">AUD</mat-option>
-            <mat-option value="BTC">BTC</mat-option>
-          </mat-select>
-        </mat-form-field>      
-    </div>
-      <!-- <p>{{selected}}</p> -->
-  </div>
-  <div class="row">
-    <div class="card col-lg-2 col-md-3 col-sm-6 col-xs-12" *ngFor="let c of coins | keyvalue">
-      <a routerLink="/detail/{{c.key}}">
-        <img class="pb-4" src="assets/img/{{c.key}}.png" alt="" width="50px">
-        <h4 class="pb-2">{{c.key}}</h4>
-        <p>{{c.value.USD.PRICE}} 
-          <span [ngClass]="{'positive': c.value.USD.CHANGEPCTDAY > 0, 'negative': c.value.USD.CHANGEPCTDAY < 0}"> ({{c.value.USD.CHANGEPCTDAY}}%
-            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
-            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>)
-          </span>
-        </p>
-      </a>
+<ng-container *ngIf="coins">
+  <div class="container-full mt-2">
+    <div class="row mt-3 mb-3">
+      <div class="col-6">
+        <h3>Welcome back, {{ username }}</h3>
       </div>
+      <div class="col-6">
+        <mat-form-field>
+            <mat-select [(value)]="selected" placeholder="Currency">
+              <mat-option value="USD">USD</mat-option>
+              <mat-option value="AUD">AUD</mat-option>
+              <mat-option value="BTC">BTC</mat-option>
+            </mat-select>
+          </mat-form-field>      
+      </div>
+        <!-- <p>{{selected}}</p> -->
+    </div>
+    <div class="row">
+      <div class="card col-lg-2 col-md-3 col-sm-6 col-xs-12" *ngFor="let c of coins">
+        <a routerLink="/detail/{{c.CoinGeneral.Symbol}}">
+          <img class="pb-4" src="assets/img/{{c.CoinGeneral.Symbol}}.png" alt="" width="50px">
+          <h4 class="pb-2">{{c.CoinGeneral.Symbol}}</h4>
+          <p>{{c.CoinData.USD.PRICE}} 
+            <span [ngClass]="{'positive': c.CoinData.USD.CHANGEPCTDAY > 0, 'negative': c.CoinData.USD.CHANGEPCTDAY < 0}"> ({{c.CoinData.USD.CHANGEPCTDAY}}%
+              <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+              <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>)
+            </span>
+          </p>
+        </a>
+        </div>
+    </div>
   </div>
-</div>
-<!-- <ng-container *ngIf="allData">
-  <p>{{values.first}}</p>
-</ng-container> -->
+</ng-container>

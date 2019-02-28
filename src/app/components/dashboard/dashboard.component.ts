@@ -28,8 +28,11 @@ export class DashboardComponent implements OnInit {
     this.username = this.loginService.getUsername();
     this.coinService.getCoinDataandGeneral()
     .subscribe(res => {
-      console.log(res);
-      return res;
+      this.coins = res;
+      // console.log(res);
+      // console.log(this.coins);
+      console.log(this.coins);
+      return this.coins;
     });
   }
 }

@@ -29,13 +29,9 @@ interface coinResponseHistory {
 export class CoinService {
 
   constructor(private http: HttpClient) { }
-  
-  // private coinData: CoinCombined[];
-  // private coinGeneralDetail: CoinCombined[];
-  // private coinHistoryData;  
 
   getCoinDataRAW(): Observable<CoinPriceData[]> {
-    return this.http.get<coinResponseDisplay>("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,EOS,TRX,XML,ETH,DASH,LTC,DOGE,BCC,BCH,BLOCK,XRP,OMG,PAY,IOT,KMD,ZEC,NEO,BNB,BAT,QTUM,POT,NXT,BNT,QASH,USDT,EDG,POWER,AE,BTM,MINX,ZA,MCO,BTS,WAVES,KMD,MAID,SNT,PURA,LSK,ZRX,HSR,DGB,BTCD&tsyms=BTC,USD,AUD")
+    return this.http.get<coinResponseDisplay>("https://min-api.cryptocompare.com/data/pricemultifull?fsyms=BTC,EOS,TRX,XML,ETH,DASH,LTC,DOGE,BCH,BLOCK,XRP,OMG,PAY,IOT,KMD,ZEC,NEO,BNB,BAT,QTUM,POT,MTL,ZEN,NXT,BNT,QASH,USDT,EDG,AE,BTM,MINX,ZA,MCO,BTS,WAVES,KMD,MAID,SNT,PURA,LSK,ZRX,HSR,DGB,BTCD&tsyms=BTC,USD,AUD")
     .pipe(map(result => result.DISPLAY));
   }
 
@@ -54,15 +50,11 @@ export class CoinService {
     let allData = combineLatest(this.getCoinDataRAW(), this.getCoinGeneralDetail())
       .pipe(map(([first, second]) => {
         let keys = Object.keys(first);
-        // console.log(first);
         let combined: CoinCombined[] = [];
         for (let key in keys) {
-          // console.log(keys);
           let data = first[keys[key]];
           let general = second[keys[key]];
-          console.log(data);
-          console.log(general);
-          combined.push({CoinGeneral: general, CoinHistory: data})
+          combined.push({CoinData: data, CoinGeneral: general})
         }
         return combined;
       }))
@@ -73,8 +65,4 @@ export class CoinService {
   first = this.getCoinDataRAW();
   second = this.getCoinGeneralDetail();
   // third = this.getCoinHistory(this.coinHistoryData); 
-
-  // setCoinData(coinData) {
-  //   this.coinData = coinData;
-  // }
 }

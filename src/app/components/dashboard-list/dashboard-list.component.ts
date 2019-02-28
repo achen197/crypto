@@ -11,8 +11,7 @@ library.add(faCaretUp, faCaretDown);
   styleUrls: ['./dashboard-list.component.scss']
 })
 export class DashboardListComponent implements OnInit {
-  // coin: CoinCombined[] = [];
-  // coinDetail: CoinCombined[] = [];
+  coin: CoinCombined[] = [];
 
   constructor(
     private coinService: CoinService,
@@ -21,14 +20,10 @@ export class DashboardListComponent implements OnInit {
   ngOnInit(): void { 
     this.coinService.getCoinDataandGeneral()
     .subscribe(res => {
-      return res;
+      this.coin = res;
+      console.log(this.coin);
+      return this.coin;
     });
-
-    // this.coinService.getCoinGeneralDetail()
-    // .subscribe(res => {
-    //   this.coinDetail = res;    
-    //   console.log(this.coinDetail);
-    // });
    }
 
 }

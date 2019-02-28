@@ -1,28 +1,28 @@
-<ng-container *ngIf="{ first: coin, second: coinDetail} as values">
+<ng-container *ngIf="coin">
   <div class="container">
   <table class="table">
     <thead>
       <tr>
         <th scope="col">Rank</th>
         <th scope="col">Name</th>
-        <th scope="col">Market Cap</th>
         <th scope="col">Price</th>
+        <th scope="col">Market Cap</th>
         <th scope="col">Volume (24h)</th>
         <th scope="col">Circulating Supply</th>
         <th scope="col">Change (24h)</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let c of coin | keyvalue">
-        <td>{{values.first.SortOrder}}</td>
-        <td><a routerLink="/detail/{{c.key}}"><img src="assets/img/{{c.key}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.key}}</a></td>
-        <td>{{c.value.USD.MKTCAP}}</td>
-        <td>{{c.value.USD.PRICE}}</td>
-        <td>{{c.value.USD.TOTALVOLUME24HTO}}</td>
-        <td>{{c.value.USD.SUPPLY}}</td>
-        <td [ngClass]="{'positive': c.value.USD.CHANGEPCTDAY > 0, 'negative': c.value.USD.CHANGEPCTDAY < 0}">{{c.value.USD.CHANGEPCT24HOUR}}% 
-            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
-            <fa-icon *ngIf="c.value.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
+      <tr *ngFor="let c of coin">
+        <td>{{c.CoinGeneral.SortOrder}}</td>
+        <td><a routerLink="/detail/{{c.CoinGeneral.Symbol}}"><img src="assets/img/{{c.CoinGeneral.Symbol}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.CoinGeneral.Symbol}}</a></td>
+        <td>{{c.CoinData.USD.PRICE}}</td>
+        <td>{{c.CoinData.USD.MKTCAP}}</td>
+        <td>{{c.CoinData.USD.TOTALVOLUME24HTO}}</td>
+        <td>{{c.CoinData.USD.SUPPLY}}</td>
+        <td [ngClass]="{'positive': c.CoinData.USD.CHANGEPCTDAY > 0, 'negative': c.CoinData.USD.CHANGEPCTDAY < 0}">{{c.CoinData.USD.CHANGEPCT24HOUR}}% 
+            <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
         </td>
       </tr>
     </tbody>
