@@ -1,0 +1,77 @@
+<!-- <ng-container *ngIf="coin">
+  <div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Rank</th>
+        <th scope="col">Name</th>
+        <th scope="col">Price</th>
+        <th scope="col">Market Cap</th>
+        <th scope="col">Volume (24h)</th>
+        <th scope="col">Circulating Supply</th>
+        <th scope="col">Change (24h)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let c of coin">
+        <td>{{c.CoinGeneral.SortOrder}}</td>
+        <td><a routerLink="/detail/{{c.CoinGeneral.Symbol}}"><img src="assets/img/{{c.CoinGeneral.Symbol}}.png" alt="{{c.key}}"class="mr-3 mb-1" width="25px">{{c.CoinGeneral.Symbol}}</a></td>
+        <td>{{c.CoinData.USD.PRICE}}</td>
+        <td>{{c.CoinData.USD.MKTCAP}}</td>
+        <td>{{c.CoinData.USD.TOTALVOLUME24HTO}}</td>
+        <td>{{c.CoinData.USD.SUPPLY}}</td>
+        <td [ngClass]="{'positive': c.CoinData.USD.CHANGEPCTDAY > 0, 'negative': c.CoinData.USD.CHANGEPCTDAY < 0}">{{c.CoinData.USD.CHANGEPCT24HOUR}}% 
+            <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+            <fa-icon *ngIf="c.CoinData.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  </ng-container> -->
+  <div class="container">
+      <mat-form-field>
+          <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
+        </mat-form-field>
+    
+    <ng-container *ngIf="coin">
+      <table mat-table [dataSource]="coin" matSort>
+        <ng-container matColumnDef="coin.CoinGeneral.SortOrder">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Rank</th>
+          <td mat-cell *matCellDef="let coin">{{coin.CoinGeneral.SortOrder}} </td>
+        </ng-container>
+        <ng-container matColumnDef="coin.CoinGeneral.FullName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+            <td mat-cell *matCellDef="let coin"><a routerLink="/detail/{{coin.CoinGeneral.Symbol}}"><img src="assets/img/{{coin.CoinGeneral.Symbol}}.png" alt="{{coin.CoinGeneral.Symbol}}"class="mr-3 mb-1" width="25px">  {{coin.CoinGeneral.FullName}} </a></td>
+          </ng-container>
+        <ng-container matColumnDef="coin.CoinData.USD.PRICE">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
+          <td mat-cell *matCellDef="let coin"> {{coin.CoinData.USD.PRICE}} </td>
+        </ng-container>
+        <ng-container matColumnDef="coin.CoinData.USD.MKTCAP">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Market Cap</th>
+          <td mat-cell *matCellDef="let coin"> {{coin.CoinData.USD.MKTCAP}} </td>
+        </ng-container>
+        <ng-container matColumnDef="coin.CoinData.USD.TOTALVOLUME24HTO">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Volume (24hr)</th>
+          <td mat-cell *matCellDef="let coin"> {{coin.CoinData.USD.TOTALVOLUME24HTO}} </td>
+        </ng-container>
+        <ng-container matColumnDef="coin..CoinData.USD.SUPPLY">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Circulating Supply</th>
+          <td mat-cell *matCellDef="let coin"> {{coin.CoinData.USD.SUPPLY}}</td>
+        </ng-container>
+        <ng-container matColumnDef="coin.CoinData.USD.CHANGEPCTDAY">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header>Change (24h)</th>
+          <td mat-cell *matCellDef="let coin"
+          [ngClass]="{'positive': coin.CoinData.USD.CHANGEPCTDAY > 0, 'negative': coin.CoinData.USD.CHANGEPCTDAY < 0}">{{coin.CoinData.USD.CHANGEPCTDAY}}
+                <fa-icon *ngIf="coin.CoinData.USD.CHANGEPCTDAY > 0" icon="caret-up" class="delete-btn"></fa-icon>
+                <fa-icon *ngIf="coin.CoinData.USD.CHANGEPCTDAY < 0" icon="caret-down" class="delete-btn"></fa-icon>
+        </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </ng-container>
+  </div>
+ 

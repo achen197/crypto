@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { NewsService } from 'src/app/service/news.service';
-import { News } from 'src/app/news';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
+import { News } from 'src/app/types/news';
 
 library.add(faArrowRight);
 
@@ -14,13 +13,15 @@ library.add(faArrowRight);
 })
 export class NewsComponent implements OnInit {
 
-  news: any;
+  news: News[] = [];
+
 
   constructor(private newsService: NewsService) { }
 
   ngOnInit(): void {
     this.newsService.getNews()
-      .subscribe(res => this.news = res);
+      .subscribe(newsData => {this.news = newsData;
+      });
   }
 
 }

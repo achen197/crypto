@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Coin } from 'src/app/coin';
 import { CoinService } from 'src/app/service/coin.service';
+import { CoinPriceData } from 'src/app/types/coinPriceData';
+import { CoinGeneralData } from 'src/app/types/coinGeneralData';
 
 @Component({
   selector: 'app-coindetail',
@@ -11,58 +12,54 @@ import { CoinService } from 'src/app/service/coin.service';
 })
 export class CoindetailComponent implements OnInit {
 
-  coin: Coin;
+  coin: CoinPriceData[] = [];
+  coinDetail: CoinGeneralData[] = [];
+  coinHistory: any[];
+  coinType: string;
 
   constructor(
     private route: ActivatedRoute,
     private coinService: CoinService,
     private location: Location
-  ) { }
+  ) { 
+      //Getting the specific crypto based on the ID (coinType)
+      this.route.params.subscribe( params => {
+        this.coinType = params['id'];
+        this.coinService.getCoinDataRAW().subscribe(coinData => {
+          this.coin = coinData[this.coinType];
+        });
+      });
 
-  ngOnInit(): void {
-    this.coin = this.coinService.getCoinData();
-  }
+      this.route.params.subscribe( params => {
+        this.coinType = params['id'];
+          this.coinService.getCoinGeneralDetail().subscribe(coinGeneralDetail => {
+          this.coinDetail = coinGeneralDetail[this.coinType];
+        });
+      });
 
+    this.route.params.subscribe( params => {
+      this.coinType = params['id'];
+        this.coinService.getCoinHistory(this.coinType).subscribe(coinHistory => {
+        this.coinHistory = coinHistory;
+        //Changing unix time to readable time for dxcharts 
+        this.coinHistory = this.coinHistory.map(history => ({...history, time: new Date(history.time * 1000)}));
+      });
+     }); 
+    }
+
+  customizeTooltip(arg) {
+        return {
+            text: "Open: $" + arg.openValue + "<br/>" +
+                "Close: $" + arg.closeValue + "<br/>" +
+                "High: $" + arg.highValue + "<br/>" +
+                "Low: $" + arg.lowValue + "<br/>"
+        };
+    };
+
+    ngOnInit(): void {}
+
+  //Back to dashboard button
   goBack(): void {
     this.location.back();
   }
-
-  public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'BTC'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'USD'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'AUD'}
-  ];
-  public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
-  public lineChartOptions:any = {
-    responsive: true
-  };
-  public lineChartColors:Array<any> = [
-    { // green
-      backgroundColor: 'rgba(16, 180, 10,0.2)',
-      borderColor: 'rgba(16, 180, 10,1)',
-      pointBackgroundColor: 'rgba(16, 180, 10,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(16, 180, 10,0.8)'
-    },
-    { // blue
-      backgroundColor: 'rgba(54,94,238,0.2)',
-      borderColor: 'rgba(54,94,238,1)',
-      pointBackgroundColor: 'rgba(54,94,238,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(54,94,238,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(255,188,28,0.2)',
-      borderColor: 'rgba(255,188,28,1)',
-      pointBackgroundColor: 'rgba(255,188,28,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(255,188,28,0.8)'
-    }
-  ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
- 
 }

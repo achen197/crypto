@@ -7,8 +7,9 @@
                       <img src="{{n.imageurl}}">
                   </div>
                 </div>
-              <span class="line"></span>
+                <span class="line"></span>
               <h4>{{n.title}}</h4>
+              <p>{{n.date | date: 'full'}}</p>
               <span class="line"></span>
               <p>{{n.body}}. <a href="{{n.url}}"><strong>Read the full article  </strong><fa-icon icon="arrow-right"></fa-icon></a></p>
               <span>{{n.categories}}</span>
@@ -16,4 +17,3 @@
           </div>
   </div>
 </div>
-

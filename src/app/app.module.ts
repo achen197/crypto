@@ -4,6 +4,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome'
 import { ChartsModule } from 'ng2-charts';
 import { FormsModule } from '@angular/forms';
+import { DxChartModule } from 'devextreme-angular';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { CommonModule } from '@angular/common';
+import { MatButtonModule, MatCheckboxModule, 
+         MatButtonToggleModule, MatTableModule, MatSelectModule,
+         MatSortModule, MatInputModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './components/search/search.component';
@@ -15,6 +21,7 @@ import { CoinComponent } from './components/coin/coin.component';
 import { CoinService } from './service/coin.service';
 import { NewsService } from './service/news.service';
 import { LoginComponent } from './components/login/login.component';
+import { DashboardListComponent } from './components/dashboard-list/dashboard-list.component';
 
 @NgModule({
   declarations: [
@@ -24,10 +31,15 @@ import { LoginComponent } from './components/login/login.component';
     NewsComponent,
     CoindetailComponent,
     CoinComponent,
-    LoginComponent
+    LoginComponent,
+    DashboardListComponent
   ],
   imports: [
-    BrowserModule, HttpClientModule, AppRoutingModule, FontAwesomeModule, ChartsModule, FormsModule
+    BrowserModule, HttpClientModule, AppRoutingModule, 
+    FontAwesomeModule, ChartsModule, FormsModule,
+    DxChartModule, BrowserAnimationsModule, CommonModule,
+    MatButtonModule, MatCheckboxModule, MatButtonToggleModule,
+    MatTableModule, MatSelectModule, MatSortModule, MatInputModule
   ],
   providers: [ CoinService, NewsService ],
   bootstrap: [AppComponent]

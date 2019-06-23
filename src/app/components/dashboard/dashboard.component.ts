@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { COINS } from 'src/app/coin-details';
 import { CoinService } from 'src/app/service/coin.service';
 import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { User } from 'src/app/user';
+import { User } from 'src/app/types/user';
 import { LoginService } from 'src/app/service/login.service';
+import { CoinCombined } from 'src/app/types/coinCombined';
 
 library.add(faCaretUp, faCaretDown);
 
@@ -16,18 +16,22 @@ library.add(faCaretUp, faCaretDown);
 export class DashboardComponent implements OnInit {
 
   username: User;
-  coin = COINS;
+  coins: CoinCombined[] = [];  
+  coinGeneralDetail: object;
+
   constructor(
     private coinService: CoinService,
     private loginService: LoginService
     ) { }
-
-  sendCoinData(c) {
-    this.coinService.setCoinData(c);
-  }
-
-  ngOnInit() {
+    
+  ngOnInit(): void {
     this.username = this.loginService.getUsername();
+    this.coinService.getCoinDataandGeneral()
+    .subscribe(res => {
+      this.coins = res;
+      // console.log(res);
+      // console.log(this.coins);
+      return this.coins;
+    });
   }
-
 }

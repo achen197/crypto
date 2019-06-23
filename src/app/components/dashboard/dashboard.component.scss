@@ -1,11 +1,3 @@
-.positive {
-    color: green;
-}
-
-.negative {
-    color: red;
-}
-
 a {
     color: white;
 
@@ -41,4 +33,9 @@ a {
 .card img {
     display: block;
     margin: 0 auto;
+}
+
+.mat-form-field {
+    float: right;
+    padding-right: 3rem;
 }
